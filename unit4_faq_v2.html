@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAT C1000 · Unit 4 Student FAQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1b2d5e; --navy-deep: #0f1c3f; --navy-mid: #243470;
+    --gold: #d4960c; --gold-light: #f0b429; --gold-pale: #fef3d8;
+    --coral: #c95a3e; --coral-pale: #fdf0ec;
+    --teal: #1a7a6e; --teal-pale: #e8f5f3;
+    --purple: #534AB7; --purple-pale: #EEEDFE;
+    --cream: #fdfaf4; --parchment: #f5ede0;
+    --border: #e8d9c5; --text: #221c16; --muted: #6b5d52; --white: #ffffff;
+    --radius: 14px; --radius-sm: 8px;
+    --shadow-card: 0 4px 24px rgba(27,45,94,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.7; }
+
+  /* HEADER */
+  .site-header { background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-mid) 100%); padding: 0; position: relative; overflow: hidden; }
+  .header-deco { position: absolute; top: 0; right: 0; bottom: 0; width: 45%; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Ccircle cx='350' cy='40' r='180' fill='rgba(244,180,42,0.06)'/%3E%3Ccircle cx='250' cy='240' r='120' fill='rgba(244,180,42,0.04)'/%3E%3C/svg%3E") no-repeat center; background-size: cover; pointer-events: none; }
+  .header-inner { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 2.5rem 2rem 2rem; }
+  .badge-sac { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,150,12,0.18); border: 1px solid rgba(240,180,41,0.4); border-radius: 100px; padding: 5px 14px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 1rem; }
+  .badge-sac::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold-light); display: inline-block; }
+  .header-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 0.5rem; }
+  .header-title em { font-style: italic; color: var(--gold-light); }
+  .header-sub { font-size: 15px; color: rgba(255,255,255,0.7); font-weight: 300; margin-bottom: 1.5rem; }
+  .hope-strip { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-sm); padding: 0.9rem 1.2rem; display: flex; align-items: flex-start; gap: 12px; }
+  .hope-icon { font-size: 20px; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+  .hope-text { font-size: 14px; color: rgba(255,255,255,0.85); font-weight: 400; line-height: 1.6; }
+  .hope-text strong { color: var(--gold-light); font-weight: 600; }
+
+  /* STATS BAR */
+  .stats-bar { background: var(--parchment); border-bottom: 1px solid var(--border); padding: 0.75rem 2rem; }
+  .stats-bar-inner { max-width: 960px; margin: 0 auto; display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+  .stat-pill { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .stat-pill strong { color: var(--navy); font-weight: 600; }
+
+  /* CONTROLS */
+  .controls { max-width: 960px; margin: 0 auto; padding: 1.5rem 2rem 0.5rem; }
+  .search-wrap { position: relative; margin-bottom: 1.25rem; }
+  .search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--muted); }
+  #searchInput { width: 100%; padding: 12px 16px 12px 44px; border: 1.5px solid var(--border); border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 15px; background: var(--white); color: var(--text); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+  #searchInput:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(27,45,94,0.1); }
+  #searchInput::placeholder { color: #b0a498; }
+  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .filter-btn { padding: 7px 16px; border-radius: 100px; border: 1.5px solid var(--border); background: var(--white); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.18s; display: flex; align-items: center; gap: 7px; }
+  .filter-btn:hover { border-color: var(--navy); color: var(--navy); }
+  .filter-btn.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .filter-btn .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+
+  /* MAIN */
+  main { max-width: 960px; margin: 0 auto; padding: 1rem 2rem 3rem; }
+
+  /* SECTION HEADERS */
+  .section-header { display: flex; align-items: center; gap: 14px; margin: 2rem 0 1rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border); }
+  .section-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--navy); }
+  .section-count { margin-left: auto; font-size: 12px; color: var(--muted); background: var(--parchment); border: 1px solid var(--border); border-radius: 100px; padding: 3px 10px; font-weight: 500; }
+
+  /* FAQ CARDS */
+  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .faq-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: box-shadow 0.2s, border-color 0.2s; }
+  .faq-card:hover { border-color: #c9b9a0; box-shadow: var(--shadow-card); }
+  .faq-card.open { border-color: var(--navy); }
+  .faq-trigger { display: flex; align-items: flex-start; gap: 14px; padding: 1.1rem 1.3rem; cursor: pointer; background: none; border: none; width: 100%; text-align: left; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.5; }
+  .q-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--parchment); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--gold); flex-shrink: 0; margin-top: 1px; border: 1.5px solid var(--border); font-family: 'Playfair Display', serif; }
+  .faq-card.open .q-icon { background: var(--navy); border-color: var(--navy); color: var(--gold-light); }
+  .faq-q { flex: 1; }
+  .chevron { width: 20px; height: 20px; flex-shrink: 0; margin-top: 3px; transition: transform 0.25s; color: var(--muted); }
+  .faq-card.open .chevron { transform: rotate(180deg); color: var(--navy); }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+  .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 100px; border: 1px solid; }
+  .tag.s-tag { background: #eef2ff; color: #3b55b0; border-color: #c7d0f5; }
+  .faq-body { overflow: hidden; max-height: 0; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
+  .faq-body-inner { padding: 0 1.3rem 1.3rem 3.8rem; border-top: 1px solid var(--border); }
+  .answer-head { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0.9rem 0 0.4rem; }
+  .answer-text { font-size: 14.5px; line-height: 1.75; color: #3a2e28; }
+  .answer-text p { margin-bottom: 0.6rem; }
+  .answer-text p:last-child { margin-bottom: 0; }
+  .answer-text strong { color: var(--navy); font-weight: 600; }
+  .answer-text em { color: var(--coral); font-style: normal; font-weight: 600; }
+  .tip-box { background: var(--gold-pale); border-left: 3px solid var(--gold); padding: 0.7rem 0.9rem; margin-top: 0.75rem; font-size: 13.5px; line-height: 1.65; color: #3d2e10; }
+  .tip-box b { color: #7a4e05; }
+  .rule-box { background: var(--coral-pale); border-left: 3px solid var(--coral); padding: 0.7rem 0.9rem; margin-top: 0.75rem; font-size: 13.5px; line-height: 1.65; color: #4a1f13; font-weight: 500; }
+  .rule-box b { color: var(--coral); }
+  .info-box { background: var(--teal-pale); border-left: 3px solid var(--teal); padding: 0.7rem 0.9rem; margin-top: 0.75rem; font-size: 13.5px; line-height: 1.65; color: #0b3d37; }
+  .info-box b { color: var(--teal); }
+  .mistake-box { background: var(--purple-pale); border-left: 3px solid var(--purple); padding: 0.7rem 0.9rem; margin-top: 0.75rem; font-size: 13.5px; line-height: 1.65; color: #26215C; }
+  .mistake-box b { color: var(--purple); }
+
+  /* DECISION TABLE */
+  .decision-table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; font-size: 13px; }
+  .decision-table caption { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 0 0 6px; }
+  .decision-table th { background: var(--navy); color: rgba(255,255,255,0.9); padding: 8px 12px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.04em; }
+  .decision-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+  .decision-table th:last-child { border-radius: 0 var(--radius-sm) 0 0; }
+  .decision-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  .decision-table tr:last-child td { border-bottom: none; }
+  .decision-table tr:nth-child(even) td { background: var(--parchment); }
+  .test-badge { display: inline-block; background: var(--navy); color: var(--gold-light); border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.03em; }
+
+  /* DECISION TREE */
+  #decisionTree { background: var(--white); border: 2px solid var(--navy); border-radius: var(--radius); overflow: hidden; margin-bottom: 0.5rem; }
+  .tree-header { background: var(--navy); padding: 1rem 1.3rem; display: flex; align-items: center; gap: 12px; }
+  .tree-header-text h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
+  .tree-header-text p { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+  .tree-body { padding: 1.3rem; }
+  .tree-breadcrumb { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; min-height: 26px; }
+  .crumb { font-size: 11px; background: var(--parchment); border: 1px solid var(--border); border-radius: 100px; padding: 3px 10px; color: var(--muted); font-weight: 500; display: flex; align-items: center; gap: 5px; }
+  .crumb::after { content: '›'; color: #b0a498; margin-left: 5px; }
+  .crumb:last-child::after { display: none; }
+  .tree-question { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 0.35rem; }
+  .tree-context { font-size: 13.5px; color: var(--muted); margin-bottom: 1rem; font-style: italic; }
+  .tree-options { display: flex; flex-direction: column; gap: 8px; }
+  .tree-option { display: flex; flex-direction: column; padding: 0.9rem 1.1rem; border: 1.5px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; transition: all 0.18s; background: var(--cream); text-align: left; font-family: 'DM Sans', sans-serif; }
+  .tree-option:hover { border-color: var(--navy); background: var(--white); box-shadow: 0 2px 12px rgba(27,45,94,0.08); }
+  .tree-option-label { font-size: 15px; font-weight: 600; color: var(--navy); }
+  .tree-option-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .tree-result { padding: 1.1rem 1.3rem; background: linear-gradient(135deg, #0f1c3f 0%, #1b2d5e 100%); border-radius: var(--radius-sm); margin-top: 0.5rem; }
+  .result-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.4rem; }
+  .result-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem; }
+  .result-symbol { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.7); margin-bottom: 0.4rem; }
+  .result-hyp { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 0.8rem; line-height: 1.6; }
+  .result-note { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 0.8rem; font-style: italic; }
+  .result-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .result-btn { padding: 8px 16px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.18s; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+  .result-btn.primary { background: var(--gold); color: #1a0f00; }
+  .result-btn.primary:hover { background: var(--gold-light); }
+  .result-btn.secondary { background: rgba(255,255,255,0.12); color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
+  .result-btn.secondary:hover { background: rgba(255,255,255,0.2); }
+  .tree-restart { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+  .restart-btn { background: none; border: 1.5px solid var(--border); border-radius: 100px; padding: 6px 14px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted); cursor: pointer; transition: all 0.18s; font-weight: 500; }
+  .restart-btn:hover { border-color: var(--navy); color: var(--navy); }
+  .tree-step-indicator { font-size: 12px; color: var(--muted); margin-left: auto; }
+
+  /* ARTOFSTAT SECTION */
+  .artofstat-section { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 2.5rem; }
+  .artofstat-header { background: #1a7a6e; padding: 1rem 1.3rem; }
+  .artofstat-header h2 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--white); }
+  .artofstat-header p { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+  .artofstat-intro { padding: 1rem 1.3rem 0.5rem; font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .artofstat-intro a { color: var(--teal); font-weight: 600; text-decoration: none; }
+  .artofstat-intro a:hover { text-decoration: underline; }
+  .artofstat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; padding: 1rem 1.3rem 1.3rem; }
+  .aos-card { border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: 0.9rem; background: var(--cream); transition: border-color 0.18s, box-shadow 0.18s; }
+  .aos-card:hover { border-color: var(--teal); box-shadow: 0 2px 12px rgba(26,122,110,0.08); }
+  .aos-test-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 100px; margin-bottom: 6px; }
+  .aos-test-badge.chi { background: #fef3d8; color: #7a4e05; border: 1px solid #f0b429; }
+  .aos-test-badge.anova { background: var(--teal-pale); color: var(--teal); border: 1px solid #b3ddd7; }
+  .aos-test-badge.reg { background: var(--purple-pale); color: var(--purple); border: 1px solid #c0bce8; }
+  .aos-name { font-weight: 600; font-size: 14px; color: var(--navy); margin-bottom: 4px; line-height: 1.3; }
+  .aos-where { font-size: 12px; color: var(--muted); margin-bottom: 6px; line-height: 1.4; }
+  .aos-note { font-size: 11.5px; color: var(--coral); font-weight: 600; margin-bottom: 8px; background: var(--coral-pale); padding: 3px 7px; border-radius: 4px; display: inline-block; }
+  .aos-video-btn { display: inline-flex; align-items: center; gap: 5px; background: var(--teal); color: var(--white); border: none; border-radius: 100px; padding: 5px 12px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.18s; }
+  .aos-video-btn:hover { background: #0f6e56; }
+
+  /* HIDDEN / MISC */
+  .faq-item.hidden { display: none; }
+  .section-group.hidden { display: none; }
+  #noResults { text-align: center; padding: 3rem 1rem; display: none; }
+  #noResults p { font-size: 15px; color: var(--muted); }
+  #noResults strong { color: var(--navy); }
+  .math { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1em; color: var(--navy); }
+  footer { background: var(--navy-deep); padding: 1.5rem 2rem; text-align: center; }
+  .footer-inner { max-width: 960px; margin: 0 auto; }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.45); }
+  footer strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+  /* INTERACTIVE APPS SECTION */
+  .apps-section { background: var(--white); border: 2px solid var(--teal); border-radius: var(--radius); overflow: hidden; margin-bottom: 0.5rem; }
+  .apps-header { background: linear-gradient(135deg, var(--teal) 0%, #0f6355 100%); padding: 1rem 1.3rem; }
+  .apps-header h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
+  .apps-header p { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+  .apps-body { padding: 1rem 1.3rem 1.3rem; }
+  .apps-category-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 1rem 0 0.5rem; border-left: 3px solid var(--teal); padding-left: 8px; }
+  .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+  .app-card { border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: 0.8rem; background: var(--cream); transition: border-color 0.18s, box-shadow 0.18s, transform 0.15s; text-decoration: none; display: flex; flex-direction: column; gap: 4px; }
+  .app-card:hover { border-color: var(--teal); box-shadow: 0 3px 14px rgba(26,122,110,0.12); transform: translateY(-1px); }
+  .app-cat-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 7px; border-radius: 100px; background: var(--teal-pale); color: var(--teal); border: 1px solid #b3ddd7; width: fit-content; }
+  .app-name { font-weight: 600; font-size: 13px; color: var(--navy); line-height: 1.3; }
+  .app-desc { font-size: 11.5px; color: var(--muted); line-height: 1.45; }
+  .app-launch { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: var(--teal); margin-top: 4px; letter-spacing: 0.02em; }
+  .app-launch::after { content: '→'; }
+  /* INLINE TRY-IT BUTTON */
+  .try-app-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--teal-pale); border: 1.5px solid #b3ddd7; border-radius: var(--radius-sm); padding: 6px 12px; font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 600; color: var(--teal); text-decoration: none; transition: all 0.18s; margin-top: 0.75rem; }
+  .try-app-btn:hover { background: var(--teal); color: var(--white); border-color: var(--teal); }
+  .try-app-btn::before { content: '🚀'; font-size: 13px; }
+  /* AOS VIDEO BUTTON */
+  .aos-video-btn { display: inline-flex; align-items: center; gap: 5px; background: var(--teal); color: var(--white); border: none; border-radius: 100px; padding: 5px 12px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.18s; margin-top: 6px; }
+  .aos-video-btn:hover { background: #0f6e56; }
+  .aos-video-icon { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* KEYWORD MATRIX TABLE */
+  .kw-table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; font-size: 13px; }
+  .kw-table caption { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 0 0 6px; }
+  .kw-table th { background: var(--navy); color: rgba(255,255,255,0.9); padding: 8px 12px; font-weight: 600; font-size: 12px; letter-spacing: 0.04em; text-align: left; }
+  .kw-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+  .kw-table th:last-child { border-radius: 0 var(--radius-sm) 0 0; }
+  .kw-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  .kw-table tr:last-child td { border-bottom: none; }
+  .kw-table tr:nth-child(even) td { background: var(--parchment); }
+  .kw-kw { font-size: 12px; color: var(--teal); font-weight: 600; font-style: italic; }
+
+  @media (max-width: 600px) {
+    .header-inner, main, .controls { padding-left: 1rem; padding-right: 1rem; }
+    .stats-bar-inner { gap: 1rem; }
+    .faq-body-inner { padding-left: 1rem; }
+    .artofstat-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header class="site-header">
+  <div class="header-deco"></div>
+  <div class="header-inner">
+    <div class="badge-sac">SAC Hope Academy · STAT C1000</div>
+    <h1 class="header-title">Unit 4 <em>Student FAQ</em></h1>
+    <p class="header-sub">Chi-Square Tests · ANOVA · Linear Regression</p>
+    <div class="hope-strip">
+      <div class="hope-icon">✦</div>
+      <div class="hope-text"><strong>These questions came from your classmates.</strong> Every confusion you feel right now is shared by someone in this class. That is not weakness — that is the beginning of learning. Use this resource as your study companion. You belong here.</div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ STATS BAR ══════════ -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-pill">📋 <strong>26</strong> frequently asked questions</div>
+    <div class="stat-pill">🚀 <strong>8</strong> interactive practice apps</div>
+    <div class="stat-pill">🗺️ Interactive <strong>test-selection tree</strong></div>
+    <div class="stat-pill">🏅 Covers <strong>S21 – S23</strong></div>
+    <div class="stat-pill">🤝 Built from <strong>real student questions</strong></div>
+  </div>
+</div>
+
+<!-- ══════════ CONTROLS ══════════ -->
+<div class="controls">
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <input type="text" id="searchInput" placeholder="Search questions… (e.g., chi-square, ANOVA, residual, F-statistic)">
+  </div>
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="filterCat(this,'all')"><span class="dot" style="background:#1b2d5e"></span>All Topics</button>
+    <button class="filter-btn" onclick="filterCat(this,'select')"><span class="dot" style="background:#d4960c"></span>Choosing the Right Test (S21)</button>
+    <button class="filter-btn" onclick="filterCat(this,'conduct')"><span class="dot" style="background:#c95a3e"></span>Conducting Tests &amp; Technology (S22)</button>
+    <button class="filter-btn" onclick="filterCat(this,'scatter')"><span class="dot" style="background:#534AB7"></span>Scatterplots &amp; Regression (S23)</button>
+  </div>
+</div>
+
+<!-- ══════════ MAIN ══════════ -->
+<main id="mainContent">
+
+  <!-- ─── DECISION TREE ─── -->
+  <div id="decisionTree">
+    <div class="tree-header">
+      <div class="tree-header-text">
+        <h3>🗺️ Which test do I use? — Interactive decision tree</h3>
+        <p>Answer 2–4 quick questions and land on the right procedure every time.</p>
+      </div>
+    </div>
+    <div class="tree-body">
+      <div class="tree-breadcrumb" id="breadcrumb" role="navigation" aria-label="Decision path"></div>
+      <div id="treeContent"></div>
+    </div>
+  </div>
+
+  <!-- ─── INTERACTIVE PRACTICE APPS ─── -->
+  <div class="apps-section">
+    <div class="apps-header">
+      <h3>🚀 Interactive Practice Apps — Unit 4</h3>
+      <p>Built for STAT C1000 · Click any card to launch in a new tab</p>
+    </div>
+    <div class="apps-body">
+
+      <p class="apps-category-label">🗺️ Test Selection &amp; Procedure</p>
+      <div class="apps-grid">
+        <a class="app-card" href="https://statisticalprocedurehelper.netlify.app/" target="_blank" rel="noopener">
+          <span class="app-cat-badge">Decision Aid</span>
+          <span class="app-name">Statistical Procedure Helper</span>
+          <span class="app-desc">A companion reference and decision aid for selecting and applying the right statistical procedure — great for S21 test triage.</span>
+          <span class="app-launch">Launch App</span>
+        </a>
+        <a class="app-card" href="https://onetwopstatsproceduretrainer.netlify.app/" target="_blank" rel="noopener">
+          <span class="app-cat-badge">Guided Practice</span>
+          <span class="app-name">Inference Procedure Trainer</span>
+          <span class="app-desc">Walks you through selecting and executing inference procedures with scaffolded support — reinforces the S21/S22 workflow.</span>
+          <span class="app-launch">Launch App</span>
+        </a>
+        <a class="app-card" href="https://sacstatthink.netlify.app/" target="_blank" rel="noopener">
+          <span class="app-cat-badge">Conceptual</span>
+          <span class="app-name">SAC StatThink</span>
+          <span class="app-desc">41 thought-provoking prompts organized by unit and SLO — jot your thinking before revealing the expert response. Includes S21–S23 prompts.</span>
+          <span class="app-launch">Launch App</span>
+        </a>
+      </div>
+
+      <p class="apps-category-label">📈 Linear Regression &amp; Scatterplots</p>
+      <div class="apps-grid">
+        <a class="app-card" href="https://linregexplorer.netlify.app/" target="_blank" rel="noopener">
+          <span class="app-cat-badge">Visualization</span>
+          <span class="app-name">LinReg Explorer</span>
+          <span class="app-desc">Manipulate data points in real time and watch the line of best fit respond — builds intuition for slope, r², residuals, and fit strength.</span>
+          <span class="app-launch">Launch App</span>
+        </a>
+        <a class="app-card" href="https://exploratorystatisticsactivity.netlify.app/" target="_blank" rel="noopener">
+          <span class="app-cat-badge">Exploration</span>
+          <span class="app-name">Exploratory Statistics Activity</span>
+          <span class="app-desc">Investigate real data and deepen intuition around patterns — a useful starting point before interpreting scatterplot outputs in S23.</span>
+          <span class="app-launch">Launch App</span>
+        </a>
+      </div>
+
+      <p class="apps-category-label">🧠 Conceptual Understanding</p>
+      <div class="apps-grid">
+        <a class="app-card" href="https://statisticalintuitionevidence.netlify.app/" target="_blank" rel="noopener">
+          <span class="app-cat-badge">Concept Builder</span>
+          <span class="app-name">Statistical Intuition &amp; Evidence</span>
+          <span class="app-desc">Connect statistical intuition with evidence-based reasoning — supports the conceptual side of p-value interpretation across all Unit 4 tests.</span>
+          <span class="app-launch">Launch App</span>
+        </a>
+      </div>
+
+      <p class="apps-category-label">📝 Quizzes &amp; Review</p>
+      <div class="apps-grid">
+        <a class="app-card" href="https://c1000module1213practicequiz.netlify.app/" target="_blank" rel="noopener">
+          <span class="app-cat-badge">Quiz</span>
+          <span class="app-name">Statistics Practice Quiz</span>
+          <span class="app-desc">Focused quiz covering Two-Sample / Proportion and Chi-Square procedures — excellent Unit 4 Chi-Square practice.</span>
+          <span class="app-launch">Launch App</span>
+        </a>
+        <a class="app-card" href="https://sacstatc1000finalconceptreview.netlify.app/" target="_blank" rel="noopener">
+          <span class="app-cat-badge">Review</span>
+          <span class="app-name">Final Exam Concept Practice</span>
+          <span class="app-desc">19 concept-level problems to sharpen understanding — covers ideas that appear across all four Unit 4 test types.</span>
+          <span class="app-launch">Launch App</span>
+        </a>
+        <a class="app-card" href="https://sacstatc1000finalskillsreview.netlify.app/" target="_blank" rel="noopener">
+          <span class="app-cat-badge">Review</span>
+          <span class="app-name">Final Exam Skills Practice</span>
+          <span class="app-desc">71 comprehensive problems spanning descriptive statistics, probability, and inference — a full course workout including Unit 4 skills.</span>
+          <span class="app-launch">Launch App</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 1 — CHOOSING THE RIGHT TEST (S21)
+  ═══════════════════════════════════════════════ -->
+  <section class="section-group" data-cat="select">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fef3d8;">🗺️</div>
+      <h2 class="section-title">Choosing the Right Test</h2>
+      <span class="section-count">S21 · 7 questions</span>
+    </div>
+    <div class="faq-list">
+
+      <!-- Q1: Variable Matrix -->
+      <div class="faq-item" data-cat="select" data-keywords="choose test chi square anova regression linear which one variable matrix categorical quantitative">
+        <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.3rem;">
+          <p style="font-size:12px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">📊 Quick Reference — The Variable Matrix</p>
+          <table class="decision-table">
+            <caption>Match your scenario to the right test in three steps: count variables, identify types, check groups</caption>
+            <thead><tr><th>How many variables?</th><th>Variable types</th><th>Groups / structure</th><th>Test to use</th></tr></thead>
+            <tbody>
+              <tr><td>1 categorical</td><td>Categorical only</td><td>Testing vs. a claimed distribution</td><td><span class="test-badge">Chi-Square GOF</span></td></tr>
+              <tr><td>2 categorical</td><td>Both categorical</td><td>Is there an association?</td><td><span class="test-badge">Chi-Square Independence</span></td></tr>
+              <tr><td>1 cat + 1 quant</td><td>Grouping variable + measurement</td><td>3 or more groups</td><td><span class="test-badge">One-Way ANOVA</span></td></tr>
+              <tr><td>2 quantitative</td><td>Both measured numbers</td><td>Predicting one from the other</td><td><span class="test-badge">Regression T-Test</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q2: Fastest triage -->
+      <div class="faq-item faq-card" data-cat="select" data-keywords="fastest way tell which test keywords trigger signal chi square anova regression triage word problem">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">What is the fastest way to tell which test a problem is calling for?<div class="tag-row"><span class="tag s-tag">S21</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Ask yourself three fast questions in order:</p>
+            <p><strong>1. What am I being asked to do?</strong> Compare groups → ANOVA or Chi-Square. Find a relationship between two measured things → Regression. Check if a distribution matches a claim → GOF.</p>
+            <p><strong>2. What type are my variables?</strong> Categorical (groups, labels, yes/no) vs. Quantitative (measured numbers). Two categorical → Chi-Square. One categorical + one quantitative → ANOVA. Two quantitative → Regression.</p>
+            <p><strong>3. How many groups?</strong> If it's one categorical grouping variable + one quantitative response, count the groups. Three or more → ANOVA. Two → Two-sample t-test (Unit 3).</p>
+          </div>
+          <div class="tip-box"><b>🧠 The one-sentence version:</b> "Is it categorical vs. categorical? → Chi-Square. Categorical vs. quantitative (3+ groups)? → ANOVA. Quantitative vs. quantitative? → Regression."</div>
+          <table class="kw-table" style="margin-top:0.75rem;">
+            <caption>Keyword trigger guide by test</caption>
+            <thead><tr><th>Test</th><th>Signal words &amp; features</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Chi-Square GOF</strong></td><td><span class="kw-kw">"fits the claimed distribution," "expected percentages," "equally likely," "matches the national rate"</span> — one variable, comparing observed to expected</td></tr>
+              <tr><td><strong>Chi-Square Independence</strong></td><td><span class="kw-kw">"related," "associated," "independent," "contingency table," "two categorical variables"</span> — two categorical variables, one sample</td></tr>
+              <tr><td><strong>ANOVA</strong></td><td><span class="kw-kw">"compare the means," "three or more groups," "differ across," "F-test"</span> — one quantitative response, multiple groups</td></tr>
+              <tr><td><strong>Regression T-Test</strong></td><td><span class="kw-kw">"predict," "linear relationship," "slope," "correlation," "as X increases, does Y…"</span> — two quantitative variables</td></tr>
+            </tbody>
+          </table>
+          <div class="mistake-box"><b>⚠️ Most common freeze-up:</b> Seeing three or more groups and automatically choosing ANOVA — but then forgetting to check whether the response variable is <em>quantitative</em>. If your response is categorical (like "yes/no"), it's Chi-Square, not ANOVA, regardless of how many groups there are.</div>
+          <a class="try-app-btn" href="https://statisticalprocedurehelper.netlify.app/" target="_blank" rel="noopener">Try the Statistical Procedure Helper — practice selecting the right test</a>
+        </div></div>
+      </div>
+
+      <!-- Q3: GOF vs. Independence -->
+      <div class="faq-item faq-card" data-cat="select" data-keywords="goodness of fit independence chi square difference one two variables distinguish tell apart">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">How do I tell whether to use Chi-Square Goodness-of-Fit or Chi-Square Test for Independence?<div class="tag-row"><span class="tag s-tag">S21</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>The clearest distinguishing question: <strong>How many categorical variables am I working with?</strong></p>
+            <p><strong>One variable → Goodness-of-Fit.</strong> You have a single categorical variable (e.g., "favorite color") and you are asking whether the distribution of responses in your sample matches a specific claimed distribution (e.g., "each color is equally preferred"). The comparison is observed counts vs. expected counts derived from a stated percentages or proportions.</p>
+            <p><strong>Two variables → Test for Independence.</strong> You have two categorical variables (e.g., "gender" and "preferred study method") and you are asking whether knowing one variable tells you anything about the other. The data lives in a contingency table with rows and columns.</p>
+          </div>
+          <div class="tip-box"><b>🧠 The one-word test:</b> If your data can be summarized in a simple list of counts for <em>one</em> category → GOF. If your data requires a table with rows AND columns → Independence.</div>
+          <div class="info-box"><b>Example — GOF:</b> A professor claims 30% of students prefer morning classes, 50% afternoon, and 20% evening. You survey 200 students. One variable (time preference), comparing to claimed percentages → Chi-Square GOF.<br><br><b>Example — Independence:</b> You survey students and record both their time preference AND their GPA category (below/above 3.0). Two variables → Chi-Square Test for Independence.</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Running a GOF test because you see percentage claims in the problem — but if the problem presents a contingency table (with rows and columns), it is always Independence, not GOF, even if percentages are mentioned.</div>
+          <a class="try-app-btn" href="https://c1000module1213practicequiz.netlify.app/" target="_blank" rel="noopener">Try the Chi-Square Practice Quiz — test your ability to choose the right test</a>
+        </div></div>
+      </div>
+
+      <!-- Q4: Independence vs. Homogeneity -->
+      <div class="faq-item faq-card" data-cat="select" data-keywords="independence homogeneity chi square same formula r by c contingency table distinguish difference">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">Chi-Square Independence and Homogeneity use the same formula and the same table — how are they different?<div class="tag-row"><span class="tag s-tag">S21</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>You are right that the calculation is identical. The difference is in the <strong>research design</strong> — specifically, how the data was collected.</p>
+            <p><strong>Test for Independence:</strong> You drew <em>one</em> random sample from a single population and measured two categorical variables on every person. You are asking: are these two variables related within this population? <em>Example: survey 300 SAC students and record both their major and their preferred study location. One sample, two variables.</em></p>
+            <p><strong>Test for Homogeneity:</strong> You drew <em>separate</em> random samples from two or more distinct populations and recorded the same categorical variable in each. You are asking: do the distributions of this variable look the same across all populations? <em>Example: separately survey 150 freshmen, 150 sophomores, and 150 juniors about their preferred study location. Three separate samples, one variable.</em></p>
+          </div>
+          <div class="tip-box"><b>🧠 The key question:</b> "Did I draw one sample and measure two things, or did I draw multiple separate samples?" One sample → Independence. Multiple separate samples → Homogeneity.</div>
+          <div class="info-box"><b>Practical note:</b> In many real-world problems — and on your homework — the distinction between these two is not tested at the calculation level, since the math is identical. What matters is that you can state the correct hypotheses and write an accurate contextual conclusion. Independence concludes about <em>association</em>; Homogeneity concludes about <em>equal distributions</em> across groups.</div>
+        </div></div>
+      </div>
+
+      <!-- Q5: Why not multiple t-tests — Type I inflation -->
+      <div class="faq-item faq-card" data-cat="select" data-keywords="ANOVA multiple t tests type 1 error family wise error rate why not several t tests inflation">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">Why can't I just run multiple two-sample t-tests instead of ANOVA? What's the actual risk?<div class="tag-row"><span class="tag s-tag">S21</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Each hypothesis test at α = 0.05 carries a 5% chance of a Type I error — falsely rejecting a true null hypothesis. When you run just <em>one</em> test, that risk is 5%. But each additional test multiplies the cumulative risk of making at least one false positive.</p>
+            <p>With three groups (A, B, C), you would need three separate t-tests: A vs. B, A vs. C, and B vs. C. The probability of making <em>at least one</em> error across those three tests rises to approximately 14%. With four groups (six comparisons), it climbs past 26%.</p>
+            <p><strong>ANOVA runs all comparisons in a single test</strong>, keeping the Type I error rate controlled at exactly α = 0.05 across the entire analysis.</p>
+          </div>
+          <div class="rule-box"><b>The core principle:</b> One test, one alpha. Multiple tests, compounding errors. ANOVA protects you from "fishing" for significance by limiting the family-wise error rate to α.</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Thinking that because each individual t-test uses α = 0.05, the combined analysis is still at 5% risk. Each test is an independent gamble. The more tests you run, the more likely you eventually roll the wrong number — even when H₀ is actually true for all groups.</div>
+        </div></div>
+      </div>
+
+      <!-- Q6: ANOVA vs. Two-Sample T boundary -->
+      <div class="faq-item faq-card" data-cat="select" data-keywords="anova two sample t test two groups boundary when ANOVA better two populations F equals t squared">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">Can ANOVA ever be used when there are only two groups? What's the difference between ANOVA and a two-sample t-test?<div class="tag-row"><span class="tag s-tag">S21</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Technically, yes — ANOVA can handle two groups. In fact, when you have exactly two groups, the F-statistic from ANOVA equals the square of the t-statistic from a two-sample t-test (<span class="math">F = t²</span>), and both tests produce identical p-values. They are mathematically the same test in disguise.</p>
+            <p>However, <strong>by convention</strong> — and for this course — use a two-sample t-test when comparing exactly two groups, and ANOVA when comparing three or more groups. The two-sample t-test also has the advantage of giving you confidence intervals for the difference in means, which ANOVA alone does not.</p>
+          </div>
+          <div class="tip-box"><b>🧠 Simple convention:</b> 2 groups → Two-sample t-test (Unit 3). 3+ groups → ANOVA. The math converges at 2 groups, but the convention is clear.</div>
+          <div class="info-box"><b>Connection to Unit 3:</b> If you see a problem with two quantitative groups and a quantitative response, that is the two-sample t-test you already know. ANOVA becomes necessary only when a third (or more) group is added to the comparison.</div>
+        </div></div>
+      </div>
+
+      <!-- Q7: Writing research questions -->
+      <div class="faq-item faq-card" data-cat="select" data-keywords="write research question template chi square gof independence anova regression linear t test slope">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">Is there a template for writing a research question for each type of test?<div class="tag-row"><span class="tag s-tag">S21</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Yes — each test type has a natural sentence structure. Fill in the brackets with the specific context from your study.</p>
+          </div>
+          <table class="decision-table">
+            <caption>Research question templates by test type</caption>
+            <thead><tr><th>Test</th><th>Research Question Template</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Chi-Square GOF</strong></td><td>"Does the distribution of [categorical variable] in [population] fit the claimed distribution of [stated percentages]?"</td></tr>
+              <tr><td><strong>Chi-Square Independence</strong></td><td>"Is there a statistically significant association between [variable 1] and [variable 2] among [population]?"</td></tr>
+              <tr><td><strong>ANOVA</strong></td><td>"Is there a statistically significant difference in the mean [quantitative variable] across [3+ group names] among [population]?"</td></tr>
+              <tr><td><strong>Regression T-Test</strong></td><td>"Is there a statistically significant linear relationship between [explanatory variable X] and [response variable Y] for [population]?"</td></tr>
+            </tbody>
+          </table>
+          <div class="tip-box"><b>🧠 Quick check:</b> Does your research question name both variables and the population? If yes, you have a complete research question. The phrasing "is there a relationship / association / difference" is the signal that a hypothesis test follows.</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Writing a directional research question for tests that are inherently non-directional. Chi-Square and ANOVA are always two-tailed / non-directional — you are not claiming which group is higher or which variables are associated in a specific way. Save directional language for the regression T-test when the scatterplot suggests a clear slope direction.</div>
+          <a class="try-app-btn" href="https://sacstatthink.netlify.app/" target="_blank" rel="noopener">Try SAC StatThink — explore Unit 4 conceptual prompts by SLO</a>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 2 — CONDUCTING TESTS & TECHNOLOGY (S22)
+  ═══════════════════════════════════════════════ -->
+  <section class="section-group" data-cat="conduct">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fdf0ec;">⚙️</div>
+      <h2 class="section-title">Conducting Tests &amp; Technology</h2>
+      <span class="section-count">S22 · 12 questions</span>
+    </div>
+    <div class="faq-list">
+
+      <!-- Q8: Hypotheses for Chi-Square -->
+      <div class="faq-item faq-card" data-cat="conduct" data-keywords="null alternative hypothesis chi square H0 Ha GOF independence write set up hypotheses">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">What are <span class="math">H₀</span> and <span class="math">Hₐ</span> for Chi-Square tests — and are they the same for GOF and Independence?<div class="tag-row"><span class="tag s-tag">S22</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>They are similar in form but different in meaning. Both are always non-directional (no >, <, only "does not fit" or "is associated").</p>
+            <p><strong>Goodness-of-Fit:</strong><br>
+            <em>H₀:</em> The distribution of [variable] fits (matches) the claimed distribution.<br>
+            <em>Hₐ:</em> The distribution of [variable] does not fit the claimed distribution.</p>
+            <p><strong>Test for Independence:</strong><br>
+            <em>H₀:</em> [Variable A] and [Variable B] are independent (not associated).<br>
+            <em>Hₐ:</em> [Variable A] and [Variable B] are not independent (they are associated).</p>
+          </div>
+          <div class="tip-box"><b>🧠 Memory anchor:</b> The null hypothesis always assumes nothing interesting is happening — for GOF, the "nothing" is that the data fits the claim. For Independence, the "nothing" is that the two variables have no relationship at all.</div>
+          <div class="rule-box"><b>Key difference:</b> Notice that there is no directionality in Chi-Square hypotheses. You never write H₀: p₁ > p₂ or anything like that. Chi-Square is always about "fit or don't fit" and "associated or not associated."</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Writing Hₐ as "variable A affects variable B." The Chi-Square test cannot establish causation or direction — only whether an association exists. Always write Hₐ as "are associated" or "are not independent," never "causes."</div>
+        </div></div>
+      </div>
+
+      <!-- Q9: Hypotheses for ANOVA -->
+      <div class="faq-item faq-card" data-cat="conduct" data-keywords="null alternative hypothesis ANOVA H0 Ha all means equal at least one differs mu1 mu2 mu3">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">What are <span class="math">H₀</span> and <span class="math">Hₐ</span> for ANOVA — and why can't <span class="math">Hₐ</span> just say "all means are different"?<div class="tag-row"><span class="tag s-tag">S22</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p><strong>H₀:</strong> All group means are equal. (μ₁ = μ₂ = μ₃ = … = μₖ)</p>
+            <p><strong>Hₐ:</strong> At least one group mean differs from the others.</p>
+            <p>The reason Hₐ says "at least one" (not "all are different") is important. ANOVA is an omnibus test — it detects whether <em>any</em> difference exists somewhere among the groups. It does not tell you which groups differ or how many. If you reject H₀, all you know is that the group means are not all the same. Some might be identical to each other while one is very different — ANOVA still flags it.</p>
+          </div>
+          <div class="info-box"><b>Why this matters for conclusions:</b> When you reject H₀ in ANOVA, you cannot write "all group means are significantly different." You must write: "There is significant evidence that at least one group mean differs from the others." A post-hoc test (like Tukey's) would be needed to specify <em>which</em> pairs differ.</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Writing H₀ as "the group means are different" (backwards!) or Hₐ as "all group means are different from each other." ANOVA's alternative is much more modest — just one outlier mean is enough to reject H₀.</div>
+        </div></div>
+      </div>
+
+      <!-- Q10: Regression T-Test hypotheses & directional -->
+      <div class="faq-item faq-card" data-cat="conduct" data-keywords="regression t test slope beta H0 Ha null alternative directional two tailed one tailed beta not equal zero">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">For the Regression T-Test for slope, when do I use <span class="math">β ≠ 0</span> vs. a one-tailed alternative?<div class="tag-row"><span class="tag s-tag">S22</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>H₀ is always the same: <strong>β = 0</strong> (the slope is zero — no linear relationship exists).</p>
+            <p>The choice between two-tailed and one-tailed depends on what the research question is asking:</p>
+            <p><strong>Two-tailed (β ≠ 0):</strong> Use when the question asks "Is there a linear relationship?" or "Does a correlation exist?" without specifying direction. This is the most common case in this course. You are simply asking whether the slope is meaningfully different from flat.</p>
+            <p><strong>One-tailed (β &gt; 0 or β &lt; 0):</strong> Use only when the question explicitly predicts the direction of the relationship before collecting data. For example: "Does spending more time studying lead to higher exam scores?" predicts a positive slope → Hₐ: β &gt; 0. Look for prior-directional language like "leads to," "increases with," "as X rises, Y also rises."</p>
+          </div>
+          <div class="tip-box"><b>🧠 When in doubt, use two-tailed (β ≠ 0).</b> In practice and in this course, most regression tests are two-tailed. Use one-tailed only when the problem clearly predicts direction <em>before</em> seeing the data — not just because your scatterplot happens to show a positive slope.</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Looking at the scatterplot, seeing a positive slope, and writing Hₐ: β &gt; 0. The direction of your alternative hypothesis should be determined by the research question and prior reasoning — not by peeking at the data you already collected.</div>
+        </div></div>
+      </div>
+
+      <!-- Q11: F-statistic meaning -->
+      <div class="faq-item faq-card" data-cat="conduct" data-keywords="F statistic meaning ANOVA what does it represent between group within group variance ratio">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">What does the <span class="math">F</span>-statistic actually mean in ANOVA? Is it just a number I plug into Art of Stat?<div class="tag-row"><span class="tag s-tag">S22</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>The F-statistic is a ratio that compares two sources of variability in your data:</p>
+            <p><strong>F = (variability between groups) ÷ (variability within groups)</strong></p>
+            <p>Think of it this way: if the group means are truly different, then how much the group averages spread out (between-group variability) should be <em>large</em> relative to how much individual values bounce around within each group (within-group variability). A large F-ratio → the signal (between groups) is loud relative to the noise (within groups) → evidence that at least one group mean is different.</p>
+            <p>If H₀ is true (all means equal), the between-group variability should be roughly as large as the within-group variability → F ≈ 1. Large F-values → small p-value → reject H₀.</p>
+          </div>
+          <div class="tip-box"><b>🧠 Intuition:</b> F is a signal-to-noise ratio. "Is the spread between my group averages bigger than the spread inside my groups?" If yes → something real is going on between the groups.</div>
+          <div class="info-box"><b>Reading Art of Stat output:</b> The ANOVA table gives you the F-statistic directly. Use it alongside the p-value for your decision. You do not need to compute F by hand — but you do need to know what it is conceptually to write a meaningful conclusion.</div>
+          <a class="try-app-btn" href="https://statisticalintuitionevidence.netlify.app/" target="_blank" rel="noopener">Try Statistical Intuition &amp; Evidence — build F-statistic and p-value intuition</a>
+        </div></div>
+      </div>
+
+      <!-- Q12: Reject vs Fail to Reject -->
+      <div class="faq-item faq-card" data-cat="conduct" data-keywords="reject fail to reject null hypothesis p value alpha decision conclusion sufficient evidence">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">I keep mixing up when to reject vs. fail to reject. How do I make this click?<div class="tag-row"><span class="tag s-tag">S22</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Here is the complete framework in two parts:</p>
+            <p><strong>The decision:</strong> Compare your p-value to α = 0.05.<br>
+            p-value &lt; 0.05 → <em>Reject H₀</em> (the data is surprising under H₀ — something is going on)<br>
+            p-value ≥ 0.05 → <em>Fail to Reject H₀</em> (the data is not surprising enough to doubt H₀)</p>
+            <p><strong>The conclusion sentence:</strong><br>
+            Reject H₀ → "There IS sufficient evidence to support the claim that [Hₐ in context]."<br>
+            Fail to Reject → "There is NOT sufficient evidence to support the claim that [Hₐ in context]."</p>
+          </div>
+          <div class="rule-box"><b>🎵 Memory rhyme:</b> "If the p is low, the null must go!" Small p-value = reject = sufficient evidence.</div>
+          <div class="tip-box"><b>🧠 Context is required:</b> "Reject H₀" alone is never a complete conclusion. You must always follow it with what that decision means in plain language. "There is sufficient evidence to support the claim that study method and exam outcome are associated among STAT C1000 students at SAC."</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Writing "we accept H₀" when you fail to reject. We never "accept" — we simply lack sufficient evidence against it. Also: saying "we proved" anything. Statistics deals in evidence, not proof.</div>
+        </div></div>
+      </div>
+
+      <!-- Q13: Chi-Square p-value interpretation -->
+      <div class="faq-item faq-card" data-cat="conduct" data-keywords="chi square p value meaning independent related associated variables significant small">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">How do I explain what a Chi-Square p-value actually means — not just "reject" or "fail to reject"?<div class="tag-row"><span class="tag s-tag">S22</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>The p-value tells you: if the two variables were truly independent (H₀ true), how likely is it to see discrepancies between observed and expected counts as large as (or larger than) what we actually observed?</p>
+            <p>A <strong>small p-value</strong> means: the gap between what we observed and what H₀ predicted is too large to be explained by chance alone. The variables are likely associated.</p>
+            <p>A <strong>large p-value</strong> means: the gap between observed and expected is the kind of gap we would expect just from random sampling variation. No convincing evidence of association.</p>
+          </div>
+          <div class="rule-box"><b>Try this sentence structure for your conclusion:</b> "Because the p-value [value] is [less/greater] than α = 0.05, we [reject/fail to reject] H₀. There [is/is not] sufficient evidence to conclude that [Variable A] and [Variable B] are [associated/independent] among [population]."</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Writing "the p-value shows the variables are related." The p-value doesn't directly show the relationship — it measures the strength of evidence against the null hypothesis. The conclusion about "related" or "not related" is your inference from that evidence.</div>
+        </div></div>
+      </div>
+
+      <!-- Q14: ANOVA equal variance assumption -->
+      <div class="faq-item faq-card" data-cat="conduct" data-keywords="ANOVA equal variance assumption rule of thumb largest smallest standard deviation ratio check condition">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">How do I check the equal variance assumption for ANOVA when I don't know the population standard deviations?<div class="tag-row"><span class="tag s-tag">S22</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Use the <strong>2:1 rule of thumb</strong>: the equal variance assumption is reasonably satisfied if the largest sample standard deviation is less than twice the smallest sample standard deviation.</p>
+            <p>In symbols: <strong>s<sub>max</sub> / s<sub>min</sub> &lt; 2</strong></p>
+            <p>To check: find the largest s and the smallest s among all your groups. Divide. If the ratio is less than 2, proceed with ANOVA. If it is 2 or greater, the equal variance assumption may be violated and results should be interpreted cautiously.</p>
+          </div>
+          <div class="tip-box"><b>Example:</b> Three groups with s = 4.1, 5.8, and 7.3. Largest/smallest = 7.3 / 4.1 ≈ 1.78 &lt; 2 → assumption is met.</div>
+          <div class="info-box"><b>Additional ANOVA conditions to verify:</b> (1) Each group is a random sample from its population. (2) The groups are independent of each other. (3) Each population is approximately normally distributed OR each sample size is large enough (n ≥ 30 per group) for the CLT to apply. (4) Equal variance (the 2:1 rule).</div>
+        </div></div>
+      </div>
+
+      <!-- Q15: Art of Stat — Chi-Square data entry -->
+      <div class="faq-item faq-card" data-cat="conduct" data-keywords="art of stat artofstat chi square enter data which option contingency table individual observations from textbook columns">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">In Art of Stat, which "Enter Data" option do I use for the Chi-Square Test for Independence?<div class="tag-row"><span class="tag s-tag">S22</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Use the <strong>"Contingency Table"</strong> option under Enter Data. This option accepts r × c tables — meaning it supports any number of rows and columns, which matches real homework and exam problems that often have 3 or more columns.</p>
+            <p>The <strong>"Individual Observations"</strong> option is designed for raw data entry (each row is one person's data) and is limited in its contingency table configuration — avoid it for Independence tests when your problem already gives you a table of counts.</p>
+            <p>The <strong>"From Textbook"</strong> option also works if the exact textbook table is available in the tool's dropdown, but "Contingency Table" is the most reliable general option.</p>
+          </div>
+          <div class="rule-box"><b>Navigation path in Art of Stat:</b> Chi-Square Tests → Test for Independence → Enter Data → Contingency Table → type your row and column counts → Run Analysis.</div>
+          <div class="tip-box"><b>🧠 Quick check:</b> Does your data look like a table with row labels, column labels, and cell counts? → Use Contingency Table. Do you have a list of individual observations? → Use Individual Observations.</div>
+        </div></div>
+      </div>
+
+      <!-- Q16: Observed vs. Expected counts -->
+      <div class="faq-item faq-card" data-cat="conduct" data-keywords="observed expected counts chi square difference which multiply percentage grand total formula">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">I keep mixing up observed and expected counts in Chi-Square. What exactly is each one?<div class="tag-row"><span class="tag s-tag">S22</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p><strong>Observed counts (O):</strong> These are the actual counts from your data — the numbers you collected and recorded. They come directly from your sample. In a contingency table, observed counts fill each cell.</p>
+            <p><strong>Expected counts (E):</strong> These are the counts you would <em>expect to see</em> if H₀ were true — i.e., if the variables were perfectly independent or if the distribution perfectly matched the claim.</p>
+            <p><strong>For GOF:</strong> E = (claimed percentage) × (total sample size). Example: If 30% is claimed and n = 200, then E = 0.30 × 200 = 60.</p>
+            <p><strong>For Independence:</strong> E = (row total × column total) / grand total for each cell.</p>
+            <p>The Chi-Square statistic measures how far the observed counts stray from expected: <strong>χ² = Σ (O − E)² / E</strong>. Large discrepancies → large χ² → small p-value → reject H₀.</p>
+          </div>
+          <div class="tip-box"><b>🧠 Memory tip:</b> "O is what you've GOT. E is what you'd GET if H₀ were true." The test measures the gap between what you got and what H₀ predicts you should get.</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Using the expected percentages directly (like 0.30) instead of computing the expected count (0.30 × n). The chi-square formula requires counts, not percentages. Always multiply the percentage by the sample size first.</div>
+        </div></div>
+      </div>
+
+      <!-- Q17: Extrapolation boundary -->
+      <div class="faq-item faq-card" data-cat="conduct" data-keywords="extrapolation regression prediction valid reasonable x range outside data scope linear">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">How do I decide whether using a regression equation for a prediction is valid or considered extrapolation?<div class="tag-row"><span class="tag s-tag">S22</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>A prediction is valid when the x-value you are plugging in falls <strong>within the range</strong> of x-values in your original dataset. Extrapolation occurs when you plug in an x-value that is outside that range — above the maximum or below the minimum x in your data.</p>
+            <p>Beyond the data range, we have no evidence that the linear relationship continues to hold. The relationship might curve, flatten, reverse, or become undefined. Any prediction there is speculation, not statistical inference.</p>
+            <p>From your Art of Stat regression output, identify: <strong>What is the smallest x-value in your data? What is the largest?</strong> Your prediction x must fall between those two values to be considered valid interpolation.</p>
+          </div>
+          <div class="rule-box"><b>Three conditions to justify using regression for prediction:</b> (1) The p-value for the slope is significant (p &lt; 0.05) — confirming a linear relationship exists. (2) r² is reasonably large — meaning X is a useful predictor of Y. (3) The x-value you are predicting at is within the original data range (not extrapolation).</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Assuming that a significant p-value alone means the prediction is reliable. A p-value tells you a linear relationship exists, but a low r² means X explains very little of the variation in Y — so the prediction will have very wide uncertainty, even if technically valid.</div>
+        </div></div>
+      </div>
+
+      <!-- Q18: Boxplots and ANOVA conclusions -->
+      <div class="faq-item faq-card" data-cat="conduct" data-keywords="boxplots ANOVA support conclusion visual overlap reject fail to reject medians correct use">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">How do I use boxplots correctly to support an ANOVA conclusion — without just guessing from medians?<div class="tag-row"><span class="tag s-tag">S22</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Boxplots are <strong>supporting evidence</strong>, not the test itself. The p-value from ANOVA is your actual decision-maker. Here is how to use boxplots correctly:</p>
+            <p><strong>Before the test:</strong> Examine boxplots to check assumptions — do the spreads (IQR) look roughly similar across groups? Are there obvious outliers? Does the data look approximately symmetric (or are samples large enough for CLT)?</p>
+            <p><strong>After the test:</strong> If you reject H₀, use boxplots to reason about which groups might be driving the difference — look for a group whose median and spread are clearly separated from the others. Write: "The boxplot suggests Group X may have a notably higher median than Groups Y and Z, which is consistent with our ANOVA finding."</p>
+            <p><strong>Avoid:</strong> Do not say "the boxplots show we should reject H₀" — boxplot overlap is not a statistical test. Overlapping boxes do not guarantee fail to reject, and separated boxes do not guarantee reject. The p-value decides.</p>
+          </div>
+          <div class="tip-box"><b>🧠 Boxplot role:</b> Assumption checker before the test, visual support after the test. Never a substitute for the p-value decision.</div>
+        </div></div>
+      </div>
+
+      <!-- Q19: After ANOVA — which groups differ? -->
+      <div class="faq-item faq-card" data-cat="conduct" data-keywords="after ANOVA which groups differ post hoc test without how identify omnibus significant">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">If ANOVA says I should reject <span class="math">H₀</span>, how do I figure out which specific groups are different without a post-hoc test?<div class="tag-row"><span class="tag s-tag">S22</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>In this course, ANOVA is an omnibus test — it can only tell you that <em>at least one</em> mean differs. Without a post-hoc test (like Tukey's HSD), we cannot make a definitive statistical claim about which specific pairs are different.</p>
+            <p>However, when homework asks you to reason about group differences informally, use this approach:</p>
+            <p><strong>1.</strong> List the sample means for each group from your output.<br>
+            <strong>2.</strong> Examine the boxplots — which group's box is clearly separated from the others?<br>
+            <strong>3.</strong> Write a qualified, tentative statement: "The sample data suggests that Group X (mean = ___) may differ most from Group Y (mean = ___), though a post-hoc test would be needed to confirm this statistically."</p>
+          </div>
+          <div class="info-box"><b>Important limitation:</b> Never write "ANOVA shows that Group A and Group B are different" without a post-hoc test. ANOVA alone does not authorize that conclusion. ANOVA's reject decision means "at least one differs" — that is all.</div>
+          <div class="tip-box"><b>🧠 Analogy:</b> ANOVA is like a smoke detector — it tells you there is fire somewhere in the building. It does not tell you which room. A post-hoc test is the firefighter who searches each room to find exactly where.</div>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 3 — SCATTERPLOTS & REGRESSION (S23)
+  ═══════════════════════════════════════════════ -->
+  <section class="section-group" data-cat="scatter">
+    <div class="section-header">
+      <div class="section-icon" style="background:#EEEDFE;">📈</div>
+      <h2 class="section-title">Scatterplots &amp; Linear Regression</h2>
+      <span class="section-count">S23 · 7 questions</span>
+    </div>
+    <div class="faq-list">
+
+      <!-- Q20: Visual strength strong moderate weak -->
+      <div class="faq-item faq-card" data-cat="scatter" data-keywords="scatterplot strong moderate weak correlation visual strength subjective r value numerical standard">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">How do I classify a scatterplot as strong, moderate, or weak — is it just subjective?<div class="tag-row"><span class="tag s-tag">S23</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>The visual assessment is inherently somewhat subjective — two reasonable statisticians can disagree about whether a scatterplot is "moderate" or "strong." That is a real limitation of visual analysis. The solution is to anchor your description to the numerical correlation coefficient <span class="math">r</span>.</p>
+          </div>
+          <table class="decision-table">
+            <caption>Approximate correlation strength guidelines (using |r|)</caption>
+            <thead><tr><th>|r| value</th><th>Verbal strength</th><th>What it looks like</th></tr></thead>
+            <tbody>
+              <tr><td>0.8 – 1.0</td><td>Strong</td><td>Points cluster very tightly around the line; the line is clearly visible as a pattern</td></tr>
+              <tr><td>0.5 – 0.79</td><td>Moderate</td><td>Noticeable linear trend, but points scatter with meaningful spread around the line</td></tr>
+              <tr><td>0.3 – 0.49</td><td>Weak</td><td>Linear trend barely visible; wide scatter dominates the picture</td></tr>
+              <tr><td>0 – 0.29</td><td>Very weak / none</td><td>No discernible linear trend; looks like a cloud</td></tr>
+            </tbody>
+          </table>
+          <div class="tip-box"><b>🧠 Use r to anchor visual language:</b> Instead of "I think it looks strong," write "The correlation coefficient r = 0.86 indicates a strong positive linear association." Let the number drive the description.</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Describing a relationship as strong simply because the slope is steep. A steep slope has nothing to do with strength — strength is about how tightly points cluster around the line. A scatter with a steep slope but wide spread still has a weak or moderate r.</div>
+        </div></div>
+      </div>
+
+      <!-- Q21: Slope vs r-squared -->
+      <div class="faq-item faq-card" data-cat="scatter" data-keywords="large slope weak correlation r squared spread data can slope be steep but weak r2 diverge">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">Can a regression line have a large slope but a weak correlation? How are slope and <span class="math">r²</span> different?<div class="tag-row"><span class="tag s-tag">S23</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Yes — absolutely. Slope and r² measure fundamentally different things and can diverge dramatically.</p>
+            <p><strong>Slope (b)</strong> tells you the <em>rate of change</em>: for each one-unit increase in X, how much does Y change on average? A steep slope just means a large numerical change — it says nothing about how reliable that prediction is.</p>
+            <p><strong>r² (coefficient of determination)</strong> tells you <em>how much of the variation in Y is explained by X</em>. An r² of 0.12 means X explains only 12% of the variation in Y — even if the slope is large.</p>
+            <p>Imagine plotting shoe size (X) vs. salary (Y) for a random sample of adults. Shoe size is slightly correlated with height, and taller people tend to earn slightly more — so there might be a non-zero slope. But shoe size explains almost none of the variation in salary (r² near zero). A steep-looking slope with terrible predictive power.</p>
+          </div>
+          <div class="rule-box"><b>Key insight:</b> Slope = "how fast." r² = "how reliably." You can have a fast (steep) but unreliable (weak r²) relationship — or a slow (shallow) but reliable (strong r²) relationship. Always report both for a complete picture.</div>
+          <div class="tip-box"><b>🧠 r² interpretation template:</b> "Approximately [r² × 100]% of the variation in [Y variable] can be explained by the linear relationship with [X variable]." The remaining [100 − r²]% is explained by other factors or random variation.</div>
+        </div></div>
+      </div>
+
+      <!-- Q22: Slope interpretation -->
+      <div class="faq-item faq-card" data-cat="scatter" data-keywords="interpret slope in words context for every one unit increase in x y increases by b regression equation sentence">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">How do I translate the slope into a real-world sentence in words?<div class="tag-row"><span class="tag s-tag">S23</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Use this fill-in template:</p>
+            <p style="background:var(--parchment);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:0.7rem 0.9rem;font-style:italic;">"For every one [unit of X] increase in [X variable name], we predict [Y variable name] to [increase / decrease] by [|b|] [unit of Y], on average."</p>
+            <p>Determine increase vs. decrease from the sign of b: positive b = increase, negative b = decrease.</p>
+            <p><strong>Example:</strong> Regression equation: ŷ = 12.5 + 4.83x, where x = hours studied and y = exam score.<br>
+            "For every one additional hour studied, we predict the exam score to increase by 4.83 points, on average."</p>
+          </div>
+          <div class="tip-box"><b>🧠 Three things to always include:</b> (1) The direction (increases or decreases). (2) The amount (the numerical value of b). (3) The units of BOTH variables. Without units, the interpretation is incomplete.</div>
+          <div class="mistake-box"><b>⚠️ Common mistakes:</b> (1) Forgetting "on average" — the slope is a prediction, not a certainty. Every individual point will deviate from the line. (2) Confusing which variable is X and which is Y when reading the slope. (3) Dropping the units.</div>
+          <a class="try-app-btn" href="https://linregexplorer.netlify.app/" target="_blank" rel="noopener">Try LinReg Explorer — manipulate data points and watch the slope respond in real time</a>
+        </div></div>
+      </div>
+
+      <!-- Q23: Y-intercept interpretation -->
+      <div class="faq-item faq-card" data-cat="scatter" data-keywords="y intercept interpret in words context when x equals 0 prediction a value regression equation meaning extrapolation">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">How do I interpret the <span class="math">y</span>-intercept in context — and when does it make sense to do so?<div class="tag-row"><span class="tag s-tag">S23</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Use this fill-in template:</p>
+            <p style="background:var(--parchment);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:0.7rem 0.9rem;font-style:italic;">"When [X variable] = 0, we predict [Y variable] to be [a] [unit of Y]."</p>
+            <p><strong>However</strong> — before you write this, ask: <em>Is X = 0 a reasonable value within my data context?</em></p>
+            <p>If X = 0 is impossible or outside the data range, the y-intercept is not meaningful in context — it's just a mathematical anchor for the line. In that case, simply report the value and note: "The y-intercept of [a] is not meaningful here because [X variable] = 0 is not a realistic or observed scenario in this dataset."</p>
+          </div>
+          <div class="info-box"><b>Example — meaningful y-intercept:</b> ŷ = 50 + 3.2x, where x = years of experience and y = salary (in thousands). "When years of experience = 0, we predict a starting salary of $50,000." X = 0 is realistic (a new hire) → interpretation is valid.<br><br><b>Example — not meaningful:</b> ŷ = −25 + 1.4x, where x = daily steps and y = weight (lbs). "When steps = 0, predicted weight is −25 lbs." This is nonsensical → note the y-intercept is mathematically necessary but contextually uninterpretable.</div>
+        </div></div>
+      </div>
+
+      <!-- Q24: Which is X and which is Y -->
+      <div class="faq-item faq-card" data-cat="scatter" data-keywords="identify x y variable explanatory response predictor outcome which is which word problem regression">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">When a word problem doesn't label X and Y, how do I decide which variable is which?<div class="tag-row"><span class="tag s-tag">S23</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Ask this question: <strong>"Which variable would a researcher naturally use to try to predict or explain the other?"</strong></p>
+            <p><strong>X = explanatory variable</strong> (also called predictor, independent variable). This is the variable the researcher controls, manipulates, or uses as the input. It is measured first or makes causal/theoretical sense as the "cause."</p>
+            <p><strong>Y = response variable</strong> (also called outcome, dependent variable). This is what you are trying to predict, measure the effect on, or explain. It is the output.</p>
+          </div>
+          <table class="decision-table">
+            <caption>Common variable pairings — X and Y identification</caption>
+            <thead><tr><th>Scenario</th><th>X (explanatory)</th><th>Y (response)</th></tr></thead>
+            <tbody>
+              <tr><td>Does studying more lead to higher scores?</td><td>Hours studied</td><td>Exam score</td></tr>
+              <tr><td>Does income predict health care spending?</td><td>Income level</td><td>Health care spending</td></tr>
+              <tr><td>Does rainfall affect crop yield?</td><td>Inches of rainfall</td><td>Crop yield</td></tr>
+              <tr><td>Does age predict resting heart rate?</td><td>Age</td><td>Resting heart rate</td></tr>
+            </tbody>
+          </table>
+          <div class="tip-box"><b>🧠 The "predict" test:</b> Which variable do you already know (or set) that you would use to predict the other? That known/set variable is X. The predicted variable is Y.</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Reversing X and Y. While some statistical measures (like r) are symmetric, the slope, y-intercept, and regression equation are completely different when X and Y are swapped. Always assign X and Y before entering data into Art of Stat.</div>
+        </div></div>
+      </div>
+
+      <!-- Q25: Residuals -->
+      <div class="faq-item faq-card" data-cat="scatter" data-keywords="residual definition what is it leftover space formula observed predicted y hat linear regression meaning">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">What exactly is a residual? Is it just the "leftover space" between a point and the line?<div class="tag-row"><span class="tag s-tag">S23</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p>Yes — conceptually, a residual is the vertical gap between a data point and the regression line. More precisely:</p>
+            <p><strong>Residual = Observed y − Predicted ŷ</strong> &nbsp; or &nbsp; <strong>e = y − ŷ</strong></p>
+            <p>Plug in the actual x-value into the regression equation to get ŷ (the predicted value). Then subtract that from the actual y-value from your data. The difference is the residual.</p>
+            <p><strong>Positive residual:</strong> The actual point is above the regression line (reality was better than the model predicted).</p>
+            <p><strong>Negative residual:</strong> The actual point is below the regression line (reality was lower than the model predicted).</p>
+            <p><strong>Zero residual:</strong> The point falls exactly on the line (perfect prediction — rare in real data).</p>
+          </div>
+          <div class="tip-box"><b>🧠 Example:</b> Your model predicts an exam score of 78 for a student who studied 5 hours. The student actually scored 83. Residual = 83 − 78 = +5. The model under-predicted by 5 points — the actual score is 5 units above the line.</div>
+          <div class="info-box"><b>Why residuals matter:</b> The regression line is chosen to minimize the sum of squared residuals (SSE). Large residuals identify data points the model fits poorly — possible outliers or influential observations worth investigating.</div>
+        </div></div>
+      </div>
+
+      <!-- Q26: Correlation vs. causation -->
+      <div class="faq-item faq-card" data-cat="scatter" data-keywords="correlation causation confounding variable third variable lurking strong correlation does not mean causes">
+        <button class="faq-trigger" onclick="toggleFAQ(this)" aria-expanded="false">
+          <span class="q-icon" aria-hidden="true">Q</span>
+          <span class="faq-q">If two variables are strongly correlated, does that mean one actually causes the other?<div class="tag-row"><span class="tag s-tag">S23</span></div></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p class="answer-head">The answer</p>
+          <div class="answer-text">
+            <p><strong>No.</strong> Correlation measures the strength and direction of a linear relationship — it says nothing about why that relationship exists.</p>
+            <p>A strong correlation between X and Y could exist for several reasons:</p>
+            <p><strong>1. X causes Y</strong> (what we hope we're finding, but can't confirm from data alone)</p>
+            <p><strong>2. Y causes X</strong> (reverse causation — maybe higher exam scores motivate more future studying)</p>
+            <p><strong>3. A third variable (confounder) causes both</strong> — e.g., ice cream sales and drowning rates are correlated because <em>hot weather</em> drives both. Neither causes the other.</p>
+            <p><strong>4. Coincidence</strong> — given enough variables, some will correlate by pure chance</p>
+          </div>
+          <div class="rule-box"><b>The gold standard for causation:</b> A well-designed randomized controlled experiment, where subjects are randomly assigned to conditions. Observational studies — including regression — can only establish association, never causation.</div>
+          <div class="tip-box"><b>🧠 Language tip:</b> In conclusions, use "is associated with," "is related to," or "predicts" — not "causes," "leads to," or "produces." Causal language is only appropriate after a true experiment.</div>
+          <div class="mistake-box"><b>⚠️ Common mistake:</b> Seeing r = 0.92 and writing "X causes Y." A correlation of 0.92 is very strong — but it is still just an association. No correlation value, however close to 1, authorizes a causal claim from observational data.</div>
+          <a class="try-app-btn" href="https://linregexplorer.netlify.app/" target="_blank" rel="noopener">Try LinReg Explorer — see how scatter and r² change as you move data points</a>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── ART OF STAT NAVIGATION ─── -->
+  <section class="artofstat-section">
+    <div class="artofstat-header">
+      <h2>🛠 Art of Stat — Unit 4 Navigation Guide</h2>
+      <p>Menu paths, data entry notes, and video walkthroughs for every Unit 4 procedure</p>
+    </div>
+    <p class="artofstat-intro">Go to <a href="https://artofstat.com/web-apps" target="_blank" rel="noopener">artofstat.com/web-apps</a> and navigate to the app listed below. Each card links directly to a video walkthrough.</p>
+    <div class="artofstat-grid">
+
+      <div class="aos-card">
+        <span class="aos-test-badge chi">Chi-Square</span>
+        <div class="aos-name">Chi-Square GOF Test</div>
+        <div class="aos-where">Menu: <strong>Chi-Square Tests → Goodness of Fit Test</strong></div>
+        <div class="aos-note">⚠️ Enter observed counts &amp; claimed percentages (must sum to 100%)</div>
+        <a class="aos-video-btn" href="https://youtu.be/XNspzh034ww?si=29DTSClS9RWxrecP" target="_blank" rel="noopener">
+          <svg class="aos-video-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Watch video
+        </a>
+      </div>
+
+      <div class="aos-card">
+        <span class="aos-test-badge chi">Chi-Square</span>
+        <div class="aos-name">Test for Independence</div>
+        <div class="aos-where">Menu: <strong>Chi-Square Tests → Test for Independence</strong></div>
+        <div class="aos-note">⚠️ Enter Data → Contingency Table (supports 3+ columns)</div>
+        <a class="aos-video-btn" href="https://youtu.be/5OU5yo8lCp8?si=9sooKDc7Stfo-rvc" target="_blank" rel="noopener">
+          <svg class="aos-video-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Watch video
+        </a>
+        <a class="aos-video-btn" href="https://youtu.be/d7u9RkCX5T4?si=4omH9pZgxuC05y0y" target="_blank" rel="noopener" style="margin-left:4px;">
+          <svg class="aos-video-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Video #2
+        </a>
+      </div>
+
+      <div class="aos-card">
+        <span class="aos-test-badge anova">ANOVA</span>
+        <div class="aos-name">One-Way ANOVA</div>
+        <div class="aos-where">Menu: <strong>Compare Groups → ANOVA F-Test</strong></div>
+        <div class="aos-note">⚠️ Enter data by group; verify s_max / s_min &lt; 2 after output</div>
+        <a class="aos-video-btn" href="https://artofstat.com/web-apps" target="_blank" rel="noopener">
+          <svg class="aos-video-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Open Art of Stat
+        </a>
+      </div>
+
+      <div class="aos-card">
+        <span class="aos-test-badge reg">Regression</span>
+        <div class="aos-name">Linear Regression T-Test</div>
+        <div class="aos-where">Menu: <strong>Association, Correlation &amp; Regression → Linear Regression</strong></div>
+        <div class="aos-note">⚠️ Choose "Fit Linear Regression Model" tab; assign X and Y before entering data</div>
+        <a class="aos-video-btn" href="https://youtu.be/mVq6f4GbvyU?si=pKICew8hVfX_-Gbb" target="_blank" rel="noopener">
+          <svg class="aos-video-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Watch video
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="noResults" role="alert">
+    <p>No questions match <strong id="searchTerm"></strong>. Try different keywords.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p><strong>STAT C1000 · Santa Ana College · Unit 4 Student FAQ</strong></p>
+    <p>Built from real student questions · Use as a study companion, not a replacement for class</p>
+  </div>
+</footer>
+
+<script>
+/* ── DECISION TREE ── */
+var treeHistory = [];
+var currentOpts = [];
+
+var tree = {
+  start: {
+    q: "What does your research question fundamentally ask?",
+    ctx: "Focus on the goal of the analysis, not the number of groups yet.",
+    opts: [
+      { label: "Does one categorical variable match a claimed distribution?", sub: "e.g., 'Does the distribution of colors fit the claimed 30/50/20 split?'", next: "result_gof" },
+      { label: "Are two categorical variables related to each other?", sub: "e.g., 'Is there an association between gender and study method?'", next: "result_chi_indep" },
+      { label: "Do three or more groups differ in their average measurement?", sub: "e.g., 'Do mean GPA scores differ across three class levels?'", next: "result_anova" },
+      { label: "Is there a linear relationship between two quantitative variables?", sub: "e.g., 'Does studying more hours predict higher exam scores?'", next: "result_regression" }
+    ]
+  }
+};
+
+var results = {
+  result_gof: {
+    name: "Chi-Square Goodness-of-Fit Test",
+    sym: "H₀: Distribution fits the claim   Hₐ: Does not fit",
+    hyp: "One categorical variable. Compare observed counts to expected counts derived from the stated percentages.",
+    note: "In Art of Stat: Chi-Square Tests → Goodness of Fit Test. Enter observed counts and claimed percentages.",
+    art: "https://artofstat.com/web-apps",
+    vid: "https://youtu.be/XNspzh034ww?si=29DTSClS9RWxrecP"
+  },
+  result_chi_indep: {
+    name: "Chi-Square Test for Independence",
+    sym: "H₀: Variables are independent   Hₐ: Variables are associated",
+    hyp: "Two categorical variables. Data lives in a contingency table (rows × columns).",
+    note: "In Art of Stat: Chi-Square Tests → Test for Independence → Enter Data → Contingency Table.",
+    art: "https://artofstat.com/web-apps",
+    vid: "https://youtu.be/5OU5yo8lCp8?si=9sooKDc7Stfo-rvc"
+  },
+  result_anova: {
+    name: "One-Way ANOVA F-Test",
+    sym: "H₀: μ₁ = μ₂ = … = μₖ   Hₐ: At least one mean differs",
+    hyp: "One categorical grouping variable (3+ groups) + one quantitative response variable. Check: s_max / s_min < 2.",
+    note: "In Art of Stat: Compare Groups → ANOVA F-Test. Enter data by group.",
+    art: "https://artofstat.com/web-apps",
+    vid: null
+  },
+  result_regression: {
+    name: "Linear Regression T-Test for Slope",
+    sym: "H₀: β = 0   Hₐ: β ≠ 0  (or directional if problem implies it)",
+    hyp: "Two quantitative variables. Assign X (explanatory) and Y (response) before entering data.",
+    note: "In Art of Stat: Association, Correlation & Regression → Linear Regression → Fit Linear Regression Model tab.",
+    art: "https://artofstat.com/web-apps",
+    vid: "https://youtu.be/mVq6f4GbvyU?si=pKICew8hVfX_-Gbb"
+  }
+};
+
+function renderTree(nodeId) {
+  document.getElementById('breadcrumb').innerHTML =
+    treeHistory.map(function(h){ return '<span class="crumb">'+h+'</span>'; }).join('');
+
+  if (results[nodeId]) {
+    var r = results[nodeId];
+    document.getElementById('treeContent').innerHTML =
+      '<div class="tree-result">' +
+        '<div class="result-label">✓ Your test procedure</div>' +
+        '<div class="result-name">' + r.name + '</div>' +
+        '<div class="result-symbol">' + r.sym + '</div>' +
+        '<div class="result-hyp">' + r.hyp + '</div>' +
+        '<div class="result-note">📍 ' + r.note + '</div>' +
+        '<div class="result-actions">' +
+          '<a class="result-btn primary" href="' + r.art + '" target="_blank" rel="noopener">Open Art of Stat ↗</a>' +
+          (r.vid ? '<a class="result-btn secondary" href="' + r.vid + '" target="_blank" rel="noopener">▶ Watch video</a>' : '') +
+          '<button class="result-btn secondary" onclick="startTree()">↺ Start over</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="tree-restart">' +
+        '<span class="tree-step-indicator">Reached in ' + treeHistory.length + ' step' + (treeHistory.length!==1?'s':'') + '</span>' +
+      '</div>';
+    return;
+  }
+
+  var node = tree[nodeId];
+  if (!node) return;
+  currentOpts = node.opts;
+
+  var optsHtml = node.opts.map(function(o, i){
+    return '<button class="tree-option" onclick="chooseOption(' + i + ')">' +
+      '<span class="tree-option-label">' + o.label + '</span>' +
+      '<span class="tree-option-sub">' + o.sub + '</span>' +
+    '</button>';
+  }).join('');
+
+  document.getElementById('treeContent').innerHTML =
+    '<div class="tree-question">' + node.q + '</div>' +
+    '<div class="tree-context">' + node.ctx + '</div>' +
+    '<div class="tree-options">' + optsHtml + '</div>' +
+    (treeHistory.length > 0
+      ? '<div class="tree-restart"><button class="restart-btn" onclick="startTree()">↺ Start over</button>' +
+        '<span class="tree-step-indicator">Step ' + (treeHistory.length + 1) + '</span></div>'
+      : '');
+}
+
+function chooseOption(i) {
+  var o = currentOpts[i];
+  treeHistory.push(o.label.length > 50 ? o.label.substring(0, 47) + '…' : o.label);
+  renderTree(o.next);
+}
+
+function startTree() { treeHistory = []; currentOpts = []; renderTree('start'); }
+startTree();
+
+/* ── FAQ ACCORDION ── */
+function toggleFAQ(btn) {
+  var card = btn.parentElement;
+  var body = card.querySelector('.faq-body');
+  var open = card.classList.contains('open');
+  var expanded = open ? 'false' : 'true';
+  btn.setAttribute('aria-expanded', expanded);
+  if (open) { card.classList.remove('open'); body.style.maxHeight = '0'; }
+  else { card.classList.add('open'); body.style.maxHeight = (body.scrollHeight + 300) + 'px'; }
+}
+
+/* ── FILTER + SEARCH ── */
+var activeFilter = 'all';
+function filterCat(btn, cat) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  applyFilters();
+}
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+function applyFilters() {
+  var term = document.getElementById('searchInput').value.toLowerCase().trim();
+  var visible = 0;
+  document.querySelectorAll('.faq-item').forEach(function(item) {
+    var catMatch = (activeFilter === 'all') || (item.getAttribute('data-cat') === activeFilter);
+    var kw = (item.getAttribute('data-keywords') || '') + ' ' + (item.textContent || '');
+    var searchMatch = !term || kw.toLowerCase().includes(term);
+    if (catMatch && searchMatch) { item.classList.remove('hidden'); visible++; }
+    else {
+      item.classList.add('hidden');
+      var b = item.querySelector('.faq-body');
+      if (b) { item.classList.remove('open'); b.style.maxHeight = '0'; }
+    }
+  });
+  document.querySelectorAll('.section-group').forEach(function(sec) {
+    var catMatch = (activeFilter === 'all') || (sec.getAttribute('data-cat') === activeFilter);
+    var vis = sec.querySelectorAll('.faq-item:not(.hidden)').length;
+    sec.classList.toggle('hidden', !catMatch || vis === 0);
+  });
+  var nr = document.getElementById('noResults');
+  if (visible === 0) { nr.style.display = 'block'; document.getElementById('searchTerm').textContent = '"' + term + '"'; }
+  else { nr.style.display = 'none'; }
+}
+</script>
+</body>
+</html>
